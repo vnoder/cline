@@ -34,6 +34,64 @@ Meet Cline, an AI assistant that can use your **CLI** a**N**d **E**ditor.
 
 Thanks to [Claude 3.7 Sonnet's agentic coding capabilities](https://www.anthropic.com/claude/sonnet), Cline can handle complex software development tasks step-by-step. With tools that let him create & edit files, explore large projects, use the browser, and execute terminal commands (after you grant permission), he can assist you in ways that go beyond code completion or tech support. Cline can even use the Model Context Protocol (MCP) to create new tools and extend his own capabilities. While autonomous AI scripts traditionally run in sandboxed environments, this extension provides a human-in-the-loop GUI to approve every file change and terminal command, providing a safe and accessible way to explore the potential of agentic AI.
 
+## 🚀 Two Ways to Use Cline
+
+### 1. VSCode Extension (Full Features)
+Install from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev) for the complete Cline experience with GUI, file editing, browser automation, and more.
+
+### 2. Command Line Interface (CLI)
+Use Cline directly from your terminal for quick AI assistance and coding tasks.
+
+#### CLI Installation
+```bash
+# Clone the repository
+git clone https://github.com/cline/cline.git
+cd cline
+
+# Install dependencies and build CLI
+npm install
+npm run compile-cli
+
+# Install CLI globally
+cd cli-package
+npm install -g .
+```
+
+#### CLI Usage
+```bash
+# Configure your AI provider
+cline config
+
+# Execute a single task
+cline task "Write a Python function to calculate factorial"
+
+# Start interactive chat session
+cline chat
+
+# Use with specific provider and API key
+cline task "Create a REST API in Node.js" --provider siliconflow --api-key YOUR_API_KEY
+```
+
+#### Supported AI Providers (CLI)
+- **Anthropic Claude** - `--provider anthropic`
+- **OpenAI** - `--provider openai-native`
+- **SiliconFlow** - `--provider siliconflow`
+- **Ollama (Local)** - `--provider ollama`
+
+#### CLI Examples
+```bash
+# Quick code generation
+cline task "Create a React component for a todo list" --provider siliconflow --api-key sk-xxx
+
+# Interactive coding session
+cline chat --provider anthropic --api-key sk-ant-xxx
+
+# Local AI with Ollama
+cline task "Explain this Python code" --provider ollama --model llama3.2
+```
+
+## 🎯 How Cline Works (VSCode Extension)
+
 1. Enter your task and add images to convert mockups into functional apps or fix bugs with screenshots.
 2. Cline starts by analyzing your file structure & source code ASTs, running regex searches, and reading relevant files to get up to speed in existing projects. By carefully managing what information is added to context, Cline can provide valuable assistance even for large, complex projects without overwhelming the context window.
 3. Once Cline has the information he needs, he can:
@@ -136,6 +194,12 @@ For example, when working with a local web server, you can use 'Restore Workspac
 <!-- Transparent pixel to create line break after floating image -->
 
 <img width="2000" height="0" src="https://github.com/user-attachments/assets/ee14e6f7-20b8-4391-9091-8e8e25561929"><br>
+
+## 📚 Documentation
+
+- **[VSCode Extension Guide](https://docs.cline.bot/getting-started/for-new-coders)** - Complete guide for using Cline in VSCode
+- **[CLI Documentation](CLI-README.md)** - Detailed CLI usage and examples
+- **[API Configuration](https://docs.cline.bot/installation/api-setup)** - Setting up different AI providers
 
 ## Contributing
 
