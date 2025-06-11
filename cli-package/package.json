@@ -1,0 +1,29 @@
+{
+  "name": "cline-cli",
+  "version": "3.17.12",
+  "description": "Cline - AI coding assistant for the command line",
+  "main": "cline.js",
+  "bin": {
+    "cline": "./cline.js"
+  },
+  "keywords": [
+    "ai",
+    "coding",
+    "assistant",
+    "cli",
+    "claude",
+    "anthropic",
+    "siliconflow",
+    "openai"
+  ],
+  "author": "Cline Bot Inc.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cline/cline"
+  },
+  "homepage": "https://cline.bot",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

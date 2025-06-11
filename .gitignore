@@ -2,7 +2,8 @@ out
 dist
 dist-standalone
 dist-cli
-cli-package
+cli-package/cline.js
+cli-package/.cline/
 node_modules
 tmp
 .vscode-test/
