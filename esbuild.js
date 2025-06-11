@@ -5,7 +5,8 @@ const path = require("path")
 const production = process.argv.includes("--production")
 const watch = process.argv.includes("--watch")
 const standalone = process.argv.includes("--standalone")
-const destDir = standalone ? "dist-standalone" : "dist"
+const cli = process.argv.includes("--cli")
+const destDir = standalone ? "dist-standalone" : cli ? "dist-cli" : "dist"
 
 /**
  * @type {import('esbuild').Plugin}
@@ -158,14 +159,33 @@ const standaloneConfig = {
 	external: ["vscode", "@grpc/reflection", "grpc-health-check"],
 }
 
+// CLI-specific configuration
+const cliConfig = {
+	...baseConfig,
+	entryPoints: ["src/cli/index.ts"],
+	outfile: `${destDir}/cline.js`,
+	external: ["vscode"],
+	banner: {
+		js: "#!/usr/bin/env node\n"
+	}
+}
+
 async function main() {
-	const config = standalone ? standaloneConfig : extensionConfig
-	const extensionCtx = await esbuild.context(config)
-	if (watch) {
-		await extensionCtx.watch()
+	let config
+	if (standalone) {
+		config = standaloneConfig
+	} else if (cli) {
+		config = cliConfig
 	} else {
-		await extensionCtx.rebuild()
-		await extensionCtx.dispose()
+		config = extensionConfig
+	}
+
+	const ctx = await esbuild.context(config)
+	if (watch) {
+		await ctx.watch()
+	} else {
+		await ctx.rebuild()
+		await ctx.dispose()
 	}
 }
 
